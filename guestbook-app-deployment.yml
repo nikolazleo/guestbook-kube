@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-app-deployment
+  labels:
+    app: demo-guestbook-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      # Name of Pod
+      name: guestbook-pod
+      # Name of Label running within the Pod
+      app: demo-guestbook-app
+  template:
+    metadata:
+      # Name of Pod
+      name: guestbook-pod
+      labels:
+        # Name of Pod
+        name: guestbook-pod
+        # Name of Label running within the Pod
+        app: demo-guestbook-app
+
+    spec:
+      containers:
+          # Container name
+        - name: guestbook-app
+          image: gcr.io/google-samples/gb-frontend:v4

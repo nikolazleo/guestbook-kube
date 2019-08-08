@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    name: redis-service
+    app: demo-guestbook-app
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    # Name of Pod Label
+    name: redis-pod
+    # Name of application running within the Pod
+    app: demo-guestbook-app

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    app: demo-guestbook-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      # Name of Pod Label
+      name: redis-pod
+      # Name of application running within the Pod
+      app: demo-guestbook-app
+  template:
+    metadata:
+      # Name of Pod
+      name: redis-pod
+      labels:
+        # Name of Pod Label
+        name: redis-pod
+        # Name of application running within the Pod
+        app: demo-guestbook-app
+
+    spec:
+      containers:
+          # Container name
+        - name: redis
+          image: redis
+          ports: 
+              # Port container uses to connect to the Service
+            - containerPort: 6379
